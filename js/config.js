@@ -10,7 +10,7 @@
  *   "https://nexi-one.vercel.app/api/execute-script"
  */
 window.NEXI_CONFIG = {
-  API_URL: 'https://REMPLACE-PAR-TON-DOMAINE.vercel.app/api/execute-script',
+  API_URL: 'https://nexi-academy-one.vercel.app/',
   // Intervalle (ms) entre deux synchronisations automatiques en arrière-plan.
   AUTO_SYNC_INTERVAL: 20000
 };
