@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXI ONE - Panel Superviseur</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d91">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="app-header">
+    <div>
+      <h1 id="etab-header">NEXI ONE · Panel Superviseur</h1>
+      <div class="subtitle" id="etab-subheader"></div>
+    </div>
+    <button class="btn-danger" data-action="logout">Déconnexion</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="mes-eleves">Mes élèves</button>
+    <button class="tab-btn" data-tab="statistiques">Statistiques</button>
+    <button class="tab-btn" data-tab="suggerer">Suggérer un élève</button>
+  </nav>
+
+  <main class="app-content">
+
+    <section id="tab-mes-eleves" class="tab-panel">
+      <div class="card">
+        <h3>Mes élèves</h3>
+        <table class="data-table" id="table-mes-eleves">
+          <thead><tr><th>Nom</th><th>Identifiant</th><th>Classe</th><th>Statut</th><th>Score moyen</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="card hidden" id="fiche-eleve">
+        <h3 id="fiche-eleve-nom"></h3>
+        <div id="fiche-eleve-contenu"></div>
+      </div>
+    </section>
+
+    <section id="tab-statistiques" class="tab-panel hidden">
+      <div class="card">
+        <h3>Statistiques de l'établissement</h3>
+        <div id="stats-contenu"></div>
+      </div>
+    </section>
+
+    <section id="tab-suggerer" class="tab-panel hidden">
+      <div class="card">
+        <h3>Suggérer un nouvel élève</h3>
+        <p style="font-size:0.85rem;color:var(--nexi-muted);">
+          Ta suggestion sera envoyée à l'administrateur pour validation. Tu ne peux pas créer
+          de compte directement.
+        </p>
+        <div class="form-row"><label>Nom de l'élève</label><input id="sugg-nom"></div>
+        <div class="form-row"><label>Classe</label><input id="sugg-classe"></div>
+        <div class="form-row"><label>Identifiant souhaité</label><input id="sugg-identifiant"></div>
+        <button class="btn-primary" id="btn-send-suggestion">Envoyer la suggestion</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/superviseur.js"></script>
+</body>
+</html>

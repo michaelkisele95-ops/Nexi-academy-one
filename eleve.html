@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXI ONE - Mon espace</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d91">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="app-header">
+    <div>
+      <h1 id="eleve-welcome">Bienvenue sur NEXIONE</h1>
+      <div class="subtitle">NEXI ACADEMY</div>
+    </div>
+    <button class="btn-danger" data-action="logout">Déconnexion</button>
+  </header>
+
+  <main class="app-content">
+
+    <!-- ACCUEIL -->
+    <section id="view-accueil" class="tab-panel">
+      <div class="nexi-bot-wrap">
+        <div class="nexi-bot" id="nexi-bot"></div>
+        <div class="nexi-bot-bubble" id="nexi-bot-bubble">Clique sur moi !</div>
+      </div>
+
+      <div class="grid-tiles">
+        <button class="tile" data-view="defis">Rejoindre un défi</button>
+        <button class="tile" data-view="affinites">Mes Affinités Journalières</button>
+        <button class="tile" data-view="profil">Mon Profil Personnel</button>
+        <button class="tile" data-view="progression">Ma Progression</button>
+        <button class="tile" data-view="classement">Classement Général</button>
+      </div>
+    </section>
+
+    <!-- LISTE DES DEFIS -->
+    <section id="view-defis" class="tab-panel hidden">
+      <button class="btn-secondary" data-view="accueil">&larr; Retour</button>
+      <div class="card">
+        <h3>Défis disponibles</h3>
+        <div id="liste-defis"></div>
+      </div>
+    </section>
+
+    <!-- DEFI EN COURS -->
+    <section id="view-defi-jeu" class="tab-panel hidden">
+      <div class="card">
+        <div id="defi-jeu-header" style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 id="defi-jeu-titre"></h3>
+          <div id="defi-jeu-timer" style="font-weight:800;color:var(--nexi-red);"></div>
+        </div>
+        <div id="defi-jeu-question"></div>
+        <div id="defi-jeu-options"></div>
+        <div id="defi-jeu-feedback" style="margin-top:10px;font-weight:700;"></div>
+      </div>
+    </section>
+
+    <!-- RESULTAT DEFI -->
+    <section id="view-defi-resultat" class="tab-panel hidden">
+      <div class="card" style="text-align:center;">
+        <h3 id="resultat-titre"></h3>
+        <p id="resultat-score" style="font-size:1.4rem;font-weight:800;color:var(--nexi-blue);"></p>
+        <button class="btn-primary" data-view="accueil" style="max-width:220px;margin:10px auto;">Retour à l'accueil</button>
+      </div>
+    </section>
+
+    <!-- LISTE DES AFFINITES -->
+    <section id="view-affinites" class="tab-panel hidden">
+      <button class="btn-secondary" data-view="accueil">&larr; Retour</button>
+      <div class="card">
+        <h3>Questionnaires d'affinités</h3>
+        <p style="font-size:0.85rem;color:var(--nexi-muted);">Aucune bonne ou mauvaise réponse, réponds librement !</p>
+        <div id="liste-affinites"></div>
+      </div>
+    </section>
+
+    <!-- AFFINITES EN COURS -->
+    <section id="view-affinite-jeu" class="tab-panel hidden">
+      <div class="card">
+        <h3 id="aff-jeu-titre"></h3>
+        <div id="aff-jeu-question"></div>
+        <div id="aff-jeu-options"></div>
+      </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section id="view-profil" class="tab-panel hidden">
+      <button class="btn-secondary" data-view="accueil">&larr; Retour</button>
+      <div class="card">
+        <h3>Mon profil</h3>
+        <div class="form-row"><label>Nom affiché (uniquement visible ici)</label><input id="profil-nom"></div>
+        <div class="form-row"><label>Avatar (numéro 1 à 50)</label><input id="profil-avatar" type="number" min="1" max="50"></div>
+        <div class="form-row"><label>Thème</label>
+          <select id="profil-theme">
+            <option value="bleu">Bleu Nexi</option>
+            <option value="jaune">Jaune énergie</option>
+            <option value="vert">Vert nature</option>
+          </select>
+        </div>
+        <button class="btn-primary" id="btn-save-profil">Enregistrer</button>
+      </div>
+    </section>
+
+    <!-- PROGRESSION -->
+    <section id="view-progression" class="tab-panel hidden">
+      <button class="btn-secondary" data-view="accueil">&larr; Retour</button>
+      <div class="card">
+        <h3>Ma progression</h3>
+        <div id="progression-contenu"></div>
+      </div>
+    </section>
+
+    <!-- CLASSEMENT -->
+    <section id="view-classement" class="tab-panel hidden">
+      <button class="btn-secondary" data-view="accueil">&larr; Retour</button>
+      <div class="card">
+        <h3>Classement général</h3>
+        <p style="font-size:0.8rem;color:var(--nexi-muted);">Seul ton identifiant est visible ici, jamais ton vrai nom.</p>
+        <table class="data-table" id="table-classement">
+          <thead><tr><th>#</th><th>Identifiant</th><th>Score moyen</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="confetti-layer" style="position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:100;"></div>
+
+<script src="js/config.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/eleve.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>NEXI ONE - NEXI ACADEMY</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d91">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="landing-body">
+
+  <div id="landing-panel" class="landing-panel">
+    <div class="landing-hero">
+      <img src="icons/nexi-logo.png" alt="Nexi Academy" class="landing-logo">
+      <h1>NEXI ACADEMY</h1>
+      <p class="landing-tagline">Teach yourself</p>
+      <p class="landing-text">
+        Le saviez-vous ? Chaque enfant a des affinités et des talents uniques.
+        NEXI ONE t'aide à les découvrir à travers des défis et des jeux.
+      </p>
+      <button id="btn-reveal-login" class="btn-primary btn-large">Connexion</button>
+    </div>
+  </div>
+
+  <div id="login-panel" class="login-panel hidden">
+    <form id="login-form" class="login-card">
+      <img src="icons/nexi-logo.png" alt="Nexi Academy" class="login-logo">
+      <h2>LOGIN</h2>
+      <p class="login-subtitle">Connecte-toi pour continuer</p>
+
+      <label for="input-identifiant">Identifiant</label>
+      <input type="text" id="input-identifiant" autocomplete="username" required>
+
+      <label for="input-password">Mot de passe</label>
+      <input type="password" id="input-password" autocomplete="current-password" required>
+
+      <p id="login-error" class="login-error hidden"></p>
+
+      <button type="submit" id="btn-login" class="btn-primary">SE CONNECTER</button>
+      <p class="login-help">Identifiants oubliés ? Contacte ton établissement ou l'administrateur.</p>
+    </form>
+  </div>
+
+  <!-- ORDRE CRITIQUE : config puis sync AVANT tout script qui les utilise -->
+  <script src="js/config.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js').catch(function (err) {
+          console.warn('Service worker non enregistré :', err.message);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

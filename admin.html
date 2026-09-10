@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXI ONE - Panel Admin</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d91">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="app-header">
+    <div>
+      <h1>NEXI ONE · Panel Admin</h1>
+      <div class="subtitle" id="admin-welcome">Bienvenue</div>
+    </div>
+    <button class="btn-danger" data-action="logout">Déconnexion</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="enfants">Enfants</button>
+    <button class="tab-btn" data-tab="defis">Défis</button>
+    <button class="tab-btn" data-tab="affinites">Affinités</button>
+    <button class="tab-btn" data-tab="etablissements">Établissements</button>
+    <button class="tab-btn" data-tab="reglages">Réglages</button>
+  </nav>
+
+  <main class="app-content">
+
+    <!-- ENFANTS -->
+    <section id="tab-enfants" class="tab-panel">
+      <div class="card">
+        <h3>Ajouter un enfant</h3>
+        <div class="form-row"><label>Nom de compte (vrai nom)</label><input id="ch-nom" placeholder="Ex: Aline Kasongo"></div>
+        <div class="form-row"><label>Identifiant (connexion + classement)</label><input id="ch-identifiant" placeholder="Ex: aline_k"></div>
+        <div class="form-row"><label>Mot de passe</label><input id="ch-password" placeholder="Ex: nexi2026"></div>
+        <button class="btn-primary" id="btn-add-child">Créer l'enfant</button>
+      </div>
+      <div class="card">
+        <h3>Liste des enfants</h3>
+        <table class="data-table" id="table-children">
+          <thead><tr><th>Identifiant</th><th>Nom</th><th>Statut</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DEFIS -->
+    <section id="tab-defis" class="tab-panel hidden">
+      <div class="card">
+        <h3>Créer un défi (manuel)</h3>
+        <div class="form-row"><label>Titre du défi</label><input id="defi-titre"></div>
+        <div class="form-row"><label>Description</label><textarea id="defi-description" rows="2"></textarea></div>
+        <div id="defi-questions"></div>
+        <button class="btn-secondary" id="btn-add-question">+ Ajouter une question</button>
+        <div style="margin-top:14px;">
+          <button class="btn-primary" id="btn-save-defi">Enregistrer le défi</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Importer un défi (CSV)</h3>
+        <p style="font-size:0.85rem;color:var(--nexi-muted);">
+          Colonnes attendues : Question | Option A | Option B | Option C | Option D | Bonne(s) réponse(s) | Temps (secondes).
+          Pour plusieurs bonnes réponses, sépare-les par un point-virgule (ex: A;C).
+        </p>
+        <div class="form-row"><label>Titre du défi importé</label><input id="import-defi-titre"></div>
+        <input type="file" id="import-csv-file" accept=".csv">
+        <button class="btn-primary" id="btn-import-csv" style="margin-top:10px;">Importer</button>
+      </div>
+
+      <div class="card">
+        <h3>Défis existants</h3>
+        <table class="data-table" id="table-defis">
+          <thead><tr><th>Titre</th><th>Visible</th><th>Publié</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- AFFINITES -->
+    <section id="tab-affinites" class="tab-panel hidden">
+      <div class="card">
+        <h3>Créer un questionnaire d'affinités</h3>
+        <p style="font-size:0.85rem;color:var(--nexi-muted);">Ce sont des questions psychologiques : ni bonne ni mauvaise réponse, plusieurs choix possibles.</p>
+        <div class="form-row"><label>Titre</label><input id="aff-titre"></div>
+        <div class="form-row"><label>Description</label><textarea id="aff-description" rows="2"></textarea></div>
+        <div id="aff-questions"></div>
+        <button class="btn-secondary" id="btn-add-aff-question">+ Ajouter une question</button>
+        <div style="margin-top:14px;">
+          <button class="btn-primary" id="btn-save-aff">Enregistrer le questionnaire</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Questionnaires existants</h3>
+        <table class="data-table" id="table-affinites">
+          <thead><tr><th>Titre</th><th>Visible</th><th>Publié</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ETABLISSEMENTS -->
+    <section id="tab-etablissements" class="tab-panel hidden">
+      <div class="card">
+        <h3>Créer un superviseur d'établissement</h3>
+        <div class="form-row"><label>Nom de l'établissement</label><input id="etab-nom"></div>
+        <div class="form-row"><label>Nom du superviseur</label><input id="etab-superviseur-nom"></div>
+        <div class="form-row"><label>Identifiant superviseur</label><input id="etab-identifiant"></div>
+        <div class="form-row"><label>Mot de passe superviseur</label><input id="etab-password"></div>
+        <div class="form-row"><label>Nombre d'élèves max autorisé</label><input id="etab-max" type="number" value="50"></div>
+        <button class="btn-primary" id="btn-add-etab">Créer le superviseur</button>
+      </div>
+
+      <div class="card">
+        <h3>Demandes en attente (suggestions d'élèves)</h3>
+        <table class="data-table" id="table-suggestions">
+          <thead><tr><th>École</th><th>Nom suggéré</th><th>Classe</th><th>Identifiant souhaité</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Établissements</h3>
+        <table class="data-table" id="table-etablissements">
+          <thead><tr><th>Établissement</th><th>Superviseur</th><th>Places</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- REGLAGES -->
+    <section id="tab-reglages" class="tab-panel hidden">
+      <div class="card">
+        <h3>Réglages généraux</h3>
+        <p style="font-size:0.85rem;color:var(--nexi-muted);">
+          Toutes les données (enfants, défis, affinités, résultats) vivent dans le Google Sheet relié à l'application.
+          Aucune donnée n'est propre à un téléphone : un identifiant et mot de passe corrects suffisent
+          depuis n'importe quel appareil.
+        </p>
+        <button class="btn-secondary" id="btn-force-sync">Forcer une synchronisation maintenant</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ORDRE CRITIQUE DES SCRIPTS : config -> sync -> auth -> admin -->
+<script src="js/config.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

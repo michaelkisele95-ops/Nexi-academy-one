@@ -1,0 +1,243 @@
+:root {
+  --nexi-blue: #0b3d91;
+  --nexi-blue-light: #1e63d0;
+  --nexi-cyan: #29c5d6;
+  --nexi-yellow: #ffc93c;
+  --nexi-red: #e5484d;
+  --nexi-green: #2fbf71;
+  --nexi-bg: #f4f7fb;
+  --nexi-card: #ffffff;
+  --nexi-text: #1c2733;
+  --nexi-muted: #6b7686;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(11, 61, 145, 0.15);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--nexi-bg);
+  color: var(--nexi-text);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Landing + Login ---------- */
+.landing-body {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--nexi-blue) 0%, #062454 100%);
+}
+
+.landing-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.landing-hero {
+  text-align: center;
+  color: #fff;
+  max-width: 420px;
+}
+
+.landing-logo { width: 110px; margin-bottom: 12px; }
+.landing-hero h1 { font-size: 2rem; letter-spacing: 1px; margin: 0; }
+.landing-tagline { color: var(--nexi-cyan); margin-top: 4px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; }
+.landing-text { margin: 20px 0 28px; line-height: 1.5; color: #d8e2f5; }
+
+.login-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.login-card {
+  background: var(--nexi-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-logo { width: 70px; margin-bottom: 8px; }
+.login-card h2 { color: var(--nexi-blue); margin: 4px 0; }
+.login-subtitle { color: var(--nexi-muted); margin-bottom: 20px; font-size: 0.9rem; }
+
+.login-card label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin: 14px 0 6px;
+  color: var(--nexi-blue);
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #dbe4f3;
+  background: #fdeef0;
+  font-size: 1rem;
+}
+
+.login-error {
+  color: var(--nexi-red);
+  font-size: 0.85rem;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.login-help { font-size: 0.75rem; color: var(--nexi-muted); margin-top: 14px; }
+
+/* ---------- Boutons ---------- */
+.btn-primary {
+  background: var(--nexi-blue-light);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 18px;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.btn-primary:hover { opacity: 0.92; }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.6; cursor: default; }
+.btn-large { max-width: 260px; }
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--nexi-blue-light);
+  color: var(--nexi-blue-light);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background: var(--nexi-red);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ---------- Dashboards (admin / superviseur / élève) ---------- */
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+.app-header {
+  background: var(--nexi-blue);
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-header h1 { font-size: 1.1rem; margin: 0; }
+.app-header .subtitle { font-size: 0.8rem; color: #cfe0ff; }
+
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  background: #fff;
+  border-bottom: 1px solid #e3e9f3;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.tab-btn {
+  flex: 0 0 auto;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  color: var(--nexi-muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+.tab-btn.active { color: var(--nexi-blue); border-bottom-color: var(--nexi-blue-light); }
+
+.app-content { padding: 18px; flex: 1; max-width: 900px; margin: 0 auto; width: 100%; }
+
+.card {
+  background: var(--nexi-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.card h3 { margin-top: 0; color: var(--nexi-blue); }
+
+.grid-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+.tile {
+  background: linear-gradient(160deg, var(--nexi-blue-light), var(--nexi-blue));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  border: none;
+}
+.tile:hover { opacity: 0.95; }
+
+table.data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+table.data-table th, table.data-table td {
+  text-align: left; padding: 8px 6px; border-bottom: 1px solid #eef2f8;
+}
+table.data-table th { color: var(--nexi-muted); font-size: 0.75rem; text-transform: uppercase; }
+
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
+.badge-green { background: #e4f9ee; color: var(--nexi-green); }
+.badge-red { background: #fdecec; color: var(--nexi-red); }
+.badge-yellow { background: #fff6df; color: #a3760a; }
+
+.form-row { margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
+.form-row label { font-weight: 600; font-size: 0.85rem; color: var(--nexi-blue); }
+.form-row input, .form-row select, .form-row textarea {
+  padding: 10px; border-radius: 8px; border: 1px solid #dbe4f3; font-size: 0.95rem;
+}
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: var(--nexi-blue); color: #fff; padding: 10px 18px; border-radius: 10px;
+  font-size: 0.85rem; box-shadow: var(--shadow); z-index: 50;
+}
+
+/* Nexi Bot (version CSS simple, sans dépendance 3D) */
+.nexi-bot-wrap { text-align: center; margin: 20px 0; }
+.nexi-bot {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--nexi-cyan), var(--nexi-blue));
+  margin: 0 auto; cursor: pointer; position: relative;
+  box-shadow: 0 0 0 6px rgba(41,197,214,0.15);
+  animation: bot-float 3s ease-in-out infinite;
+}
+@keyframes bot-float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+.nexi-bot-bubble {
+  background: #fff; border-radius: 12px; padding: 10px 14px; box-shadow: var(--shadow);
+  max-width: 280px; margin: 14px auto 0; font-size: 0.85rem; color: var(--nexi-text);
+}
+
+@media (min-width: 700px) {
+  .app-content { padding: 28px; }
+}

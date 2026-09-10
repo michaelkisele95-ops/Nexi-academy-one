@@ -1,0 +1,9 @@
+{
+  "name": "nexi-one",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NEXI ONE - NEXI ACADEMY - plateforme de défis et affinités pour enfants",
+  "engines": {
+    "node": ">=18.x"
+  }
+}
